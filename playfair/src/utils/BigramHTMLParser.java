@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 public class BigramHTMLParser {
 
 	public static String convertStreamToString(java.io.InputStream is) {
+		@SuppressWarnings("resource")
 		Scanner s = new Scanner(is).useDelimiter("\\A");
 	    return s.hasNext() ? s.next() : "";
 	}
