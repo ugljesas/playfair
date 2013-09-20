@@ -100,7 +100,7 @@ public class BigramFrequencyRepository {
 		return frequencies.get(s);
 	}
 	
-	public double getTextFrequencyDistance(String in)
+	public double getTextFitness(String in)
 	{
 		List<String> digraphs = TextUtils.getDigraphs(in);
 		Map<String,Integer> digraphCount = new HashMap<String, Integer> ();
@@ -119,8 +119,8 @@ public class BigramFrequencyRepository {
 		for (Map.Entry<String, Double> entry : frequencies.entrySet())
 		{
 			double freq=0;
-			if (digraphCount.containsKey(entry.getKey())) freq = digraphCount.get(entry.getKey()) / (total+0.0);
-			result+= (freq-entry.getValue())*(freq-entry.getValue());
+			if (digraphCount.containsKey(entry.getKey())) freq = digraphCount.get(entry.getKey());
+			result+= entry.getValue() * freq;
 		}
 		return result;
 	}
@@ -129,7 +129,7 @@ public class BigramFrequencyRepository {
 		System.out.println(key);
 		Playfair playfair = new Playfair(key);
 		String input = "This is playfair";
-		System.out.println(BigramFrequencyRepository.getInstance().getTextFrequencyDistance(input));
+		System.out.println(BigramFrequencyRepository.getInstance().getTextFitness(input));
 		TextUtils.printPairs(TextUtils.prepareText(input));
 		String cipher = playfair.encrypt(input);
 		TextUtils.printPairs(cipher);
