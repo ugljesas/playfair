@@ -46,7 +46,7 @@ public class GUI extends JFrame {
     	
     	
         decryptedArea =new JTextArea("");
-        //formatting
+        // formatting
         decryptedArea.setFont(STD_FONT);
         decryptedArea.setColumns(30);
         decryptedArea.setRows(15);
