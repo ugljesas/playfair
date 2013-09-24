@@ -1,25 +1,28 @@
-package utils;
+package frequency;
 
 import java.io.FileNotFoundException;
-import java.sql.PreparedStatement;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import playfair.Playfair;
 import playfair.PlayfairKey;
+import utils.BigramHTMLParserLegacy;
+import utils.PlayfairConstants;
+import utils.TextUtils;
 
-public class BigramFrequencyRepository {
-	private static BigramFrequencyRepository instance;
-	public static BigramFrequencyRepository getInstance() {
-		if (instance==null) instance = new BigramFrequencyRepository();
+@Deprecated
+public class BigramFrequencyRepositoryLegacy  implements FrequencyRepository{
+	private static BigramFrequencyRepositoryLegacy instance;
+	public static BigramFrequencyRepositoryLegacy getInstance() {
+		if (instance==null) instance = new BigramFrequencyRepositoryLegacy();
 		return instance;
 	}
 	private Map<String,Double> frequencies;
-	private BigramFrequencyRepository ()
+	private BigramFrequencyRepositoryLegacy ()
 	{
 		try {
-			frequencies = BigramHTMLParser.getFrequencies();
+			frequencies = BigramHTMLParserLegacy.getFrequencies();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -129,7 +132,7 @@ public class BigramFrequencyRepository {
 		System.out.println(key);
 		Playfair playfair = new Playfair(key);
 		String input = "This is playfair";
-		System.out.println(BigramFrequencyRepository.getInstance().getTextFitness(input));
+		System.out.println(BigramFrequencyRepositoryLegacy.getInstance().getTextFitness(input));
 		TextUtils.printPairs(TextUtils.prepareText(input));
 		String cipher = playfair.encrypt(input);
 		TextUtils.printPairs(cipher);

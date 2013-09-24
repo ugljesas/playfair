@@ -2,7 +2,7 @@ package playfair.breaking;
 
 import playfair.Playfair;
 import playfair.PlayfairKey;
-import utils.BigramFrequencyRepository;
+import frequency.BigramFrequencyRepository;
 
 public class SimulatedAnnealing {
 	
@@ -18,14 +18,14 @@ public class SimulatedAnnealing {
 	public double getFitness(String cipherText, Playfair playfair)
 	{
 		String candidate = playfair.decrypt(cipherText);
-		return BigramFrequencyRepository.getInstance().getTextFitness(candidate)*1000;
+		return BigramFrequencyRepository.getInstance().getTextFitness(candidate);
 	}
 	public PlayfairKey findKey(String cipherText)
 	{	
-		double bestFitness = 0;
-		PlayfairKey bestKey = null;
+		double bestFitness = Double.NEGATIVE_INFINITY;
 		
 		PlayfairKey parent = PlayfairKey.getRandomKey();
+		PlayfairKey bestKey = null;
 		Playfair playfair= new Playfair(parent);
 		double parentFitness = getFitness(cipherText, playfair);
 		
@@ -41,7 +41,6 @@ public class SimulatedAnnealing {
 				double childFitness = getFitness(cipherText, playfair);
 				double df = childFitness - parentFitness;
 				boolean takeChild = false;
-				//System.out.println(Math.exp(df/temp));
 				if (df>0) takeChild = true;
 				else if (Math.random() < Math.exp(df/temp))takeChild=true;
 				if (takeChild)

@@ -21,10 +21,10 @@ public class TextUtils {
 	public static String prepareText(String s)
 	{
 		StringBuilder sb = new StringBuilder();
-		s=s.toUpperCase();
+		String ss=s.toUpperCase();
 		char previous=' ';
 		boolean pair=false;
-		for (char c : s.toCharArray())
+		for (char c : ss.toCharArray())
 		{
 			if (Character.isUpperCase(c))
 			{
@@ -41,8 +41,8 @@ public class TextUtils {
 	public static List<String> getDigraphs(String s)
 	{
 		List<String> toReturn = new ArrayList<String>();
-		s=prepareText(s);
-		for (int i=0;i<s.length();i+=2) toReturn.add(s.substring(i, i+2));
+		String q = prepareText(s);
+		for (int i=0;i<q.length();i+=2) toReturn.add(q.substring(i, i+2));
 		
 		return toReturn;
 	}
