@@ -2,7 +2,6 @@ package gui;
 
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.xml.soap.MessageFactory;
 
 import playfair.Playfair;
 import playfair.PlayfairKey;
@@ -115,14 +113,14 @@ public class GUI extends JFrame {
         bottomPanel.add(encryptBtn);
         bottomPanel.add(decryptBtn);
         
-        maxTempField = new JTextField("20");
+        maxTempField = new JTextField("10");
         maxTempField.setFont(STD_FONT);
         maxTempField.setColumns(7);
         
         JLabel maxTempLabel = new JLabel("maxTemp =");
         maxTempLabel.setLabelFor(maxTempField);
         
-        tempStepField = new JTextField("0.2");
+        tempStepField = new JTextField("0.1");
         tempStepField.setFont(STD_FONT);
         tempStepField.setColumns(7);
         
